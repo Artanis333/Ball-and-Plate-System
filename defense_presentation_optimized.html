@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>毕业设计答辩优化版 — 路一凡</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/theme/white.min.css">
+<style>
+:root{
+  --ink:#20242b; --muted:#6a7280; --light:#f7f9fc; --line:#d9e0ea;
+  --blue:#203a5f; --blue2:#315b8d; --blue3:#eef4fb; --red:#b94646; --gold:#c79a43;
+  --shadow:0 10px 26px rgba(32,58,95,.08);
+}
+*{box-sizing:border-box;}
+.reveal{font-family:"Microsoft YaHei","PingFang SC","Noto Sans CJK SC",Arial,sans-serif;color:var(--ink);font-size:24px;}
+.reveal .slides section{width:1280px;height:720px;padding:42px 58px 38px!important;text-align:left;background:linear-gradient(180deg,#fff 0%,#fbfcff 100%);outline:1px solid var(--line);outline-offset:-1px;overflow:hidden;}
+.reveal .slides section::before{content:"";position:absolute;left:0;top:0;width:100%;height:6px;background:linear-gradient(90deg,var(--blue),var(--blue2),#d7e2ef);}
+.reveal .slides section::after{content:"";position:absolute;right:28px;bottom:22px;width:88px;height:3px;background:linear-gradient(90deg,transparent,var(--line));}
+.reveal h1,.reveal h2,.reveal h3,.reveal p{margin:0;}
+.reveal h2{font-size:1.34em;letter-spacing:.02em;color:var(--blue);font-weight:800;margin-bottom:22px;display:flex;align-items:center;gap:12px;}
+.reveal h2::before{content:attr(data-no);display:inline-flex;align-items:center;justify-content:center;min-width:54px;height:30px;border-radius:16px;background:var(--blue);color:#fff;font-size:.55em;font-weight:700;letter-spacing:.04em;}
+.reveal h3{font-size:.92em;color:var(--blue);font-weight:800;margin-bottom:10px;}
+.reveal p,.reveal li{font-size:.72em;line-height:1.58;}
+.reveal ul{list-style:none;margin:0;padding:0;}
+.reveal li{position:relative;padding-left:18px;margin:0 0 7px;}
+.reveal li::before{content:"";position:absolute;left:0;top:.72em;width:6px;height:6px;border-radius:50%;background:var(--red);}
+strong{color:var(--blue);font-weight:800;}
+.small{font-size:.66em!important;color:var(--muted);line-height:1.55!important;}
+.muted{color:var(--muted);}
+.row{display:flex;gap:26px;align-items:stretch;}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:18px 24px;}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+.card{background:#fff;border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);padding:18px 20px;}
+.card-soft{background:var(--blue3);border:1px solid #d6e4f4;border-radius:14px;padding:16px 18px;}
+.tag{display:inline-block;background:#fff;border:1px solid #cad7e7;border-radius:999px;padding:4px 12px;color:var(--blue);font-size:.58em;font-weight:700;margin-bottom:10px;}
+.kpi{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:10px;}
+.kpi .item{background:#fff;border:1px solid var(--line);border-radius:12px;text-align:center;padding:10px 8px;}
+.kpi .v{font-size:1.02em;color:var(--red);font-weight:800;line-height:1.1;}
+.kpi .l{font-size:.52em;color:var(--muted);margin-top:4px;}
+.reveal table{width:100%;border-collapse:separate;border-spacing:0;font-size:.62em;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:#fff;box-shadow:0 5px 18px rgba(32,58,95,.05);}
+.reveal th{background:var(--blue);color:#fff;font-weight:700;padding:8px 10px;text-align:center;border-right:1px solid rgba(255,255,255,.18);}
+.reveal td{padding:7px 10px;text-align:center;border-top:1px solid var(--line);border-right:1px solid var(--line);}
+.reveal tr:nth-child(even) td{background:#f8fafc;}
+.reveal th:last-child,.reveal td:last-child{border-right:none;}
+.img-fit{text-align:center;}
+.img-fit img{max-width:100%;object-fit:contain;border-radius:12px;border:1px solid var(--line);box-shadow:var(--shadow);background:#fff;}
+.img-cap{font-size:.52em;color:var(--muted);text-align:center;margin-top:6px;}
+.img-grid-2{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.img-grid-2 img{width:100%;object-fit:contain;border-radius:10px;border:1px solid var(--line);background:#fff;box-shadow:0 5px 16px rgba(32,58,95,.07);}
+.note{background:linear-gradient(90deg,#fff7f7,#fff);border-left:4px solid var(--red);border-radius:10px;padding:12px 15px;color:#4a4f58;font-size:.66em;line-height:1.55;}
+.flow{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:8px;}
+.fb{padding:8px 12px;border-radius:999px;font-size:.58em;font-weight:800;text-align:center;background:#fff;border:1px solid #cfd9e6;color:var(--blue);}
+.fb-em{background:var(--blue);color:#fff;border-color:var(--blue);}
+.arr{font-size:.82em;color:var(--muted);}
+.timeline{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-top:6px;}
+.step{background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px 10px;text-align:center;box-shadow:0 4px 14px rgba(32,58,95,.05);}
+.step .n{font-size:.58em;color:#fff;background:var(--blue);border-radius:999px;display:inline-block;padding:3px 9px;margin-bottom:7px;}
+.step .t{font-size:.66em;font-weight:800;color:var(--blue);}
+.step .d{font-size:.52em;color:var(--muted);line-height:1.4;margin-top:5px;}
+/* cover */
+.cover{padding:0!important;display:grid!important;grid-template-columns:42% 58%;background:#fff!important;outline:none!important;}
+.cover::before,.cover::after,.thanks::before,.thanks::after{display:none!important;}
+.cover-left{height:720px;background:linear-gradient(150deg,#11233b,#244d78 60%,#4a6f9c);color:#fff;display:flex;flex-direction:column;justify-content:space-between;padding:58px 52px;position:relative;overflow:hidden;}
+.cover-left::after{content:"";position:absolute;right:-120px;bottom:-120px;width:330px;height:330px;border:42px solid rgba(255,255,255,.08);border-radius:50%;}
+.cover-badge{display:inline-block;width:max-content;border:1px solid rgba(255,255,255,.48);border-radius:999px;padding:8px 20px;font-size:.72em;letter-spacing:.12em;}
+.cover-org{font-size:.68em;line-height:1.9;opacity:.72;letter-spacing:.06em;}
+.cover-right{padding:86px 70px 66px;background:linear-gradient(180deg,#fff,#f7f9fc);display:flex;flex-direction:column;justify-content:center;}
+.cover h1{font-size:2.18em;line-height:1.36;color:var(--blue);font-weight:900;letter-spacing:.03em;margin-bottom:26px;}
+.cover-sub{font-size:.78em;color:var(--muted);line-height:1.8;border-left:4px solid var(--red);padding-left:18px;margin-bottom:34px;}
+.meta-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px 26px;margin-top:4px;}
+.meta{border-bottom:1px solid var(--line);padding-bottom:8px;}
+.meta .label{font-size:.56em;color:var(--muted);margin-bottom:4px;}
+.meta .value{font-size:.78em;color:var(--ink);font-weight:700;}
+/* outline */
+.outline-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:34px;}
+.outline-item{height:178px;background:#fff;border:1px solid var(--line);border-radius:18px;padding:18px 16px;box-shadow:var(--shadow);display:flex;flex-direction:column;justify-content:space-between;}
+.outline-item .num{font-size:.62em;color:#fff;background:var(--blue);border-radius:999px;width:max-content;padding:3px 10px;}
+.outline-item .name{font-size:.82em;font-weight:800;color:var(--blue);line-height:1.42;}
+.outline-item .desc{font-size:.54em;color:var(--muted);line-height:1.45;}
+/* thanks */
+.thanks{display:flex!important;align-items:center!important;justify-content:center!important;text-align:center!important;color:#fff!important;background:linear-gradient(150deg,#11233b,#244d78 58%,#4a6f9c)!important;}
+.thanks h1{font-size:2.55em;color:#fff!important;font-weight:900;letter-spacing:.08em;margin:10px 0;}
+.thanks .line{width:110px;height:3px;background:rgba(255,255,255,.52);margin:20px auto;}
+.thanks p{font-size:.86em;line-height:2;color:rgba(255,255,255,.82);}
+@media print{.reveal .slides section{box-shadow:none!important;}}
+</style>
+</head>
+<body>
+<div class="reveal"><div class="slides">
+
+<section class="cover">
+  <div class="cover-left">
+    <div class="cover-badge">本科毕业设计答辩</div>
+    <div class="cover-org">西安电子科技大学<br>机电工程学院 · 自动化专业<br>2026 年 5 月</div>
+  </div>
+  <div class="cover-right">
+    <h1>基于视觉反馈板球系统的<br>控制算法研究与硬件实现</h1>
+    <p class="cover-sub">围绕"视觉测量—控制决策—执行机构"的完整闭环，完成系统建模、串级 PID 设计、仿真验证和实物平台实验。</p>
+    <div class="meta-grid">
+      <div class="meta"><div class="label">答辩人</div><div class="value">路一凡</div></div>
+      <div class="meta"><div class="label">学号</div><div class="value">22049200019</div></div>
+      <div class="meta"><div class="label">指导教师</div><div class="value">秦红波 老师</div></div>
+      <div class="meta"><div class="label">专业</div><div class="value">自动化</div></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2 data-no="目录">汇报内容</h2>
+  <div class="outline-grid">
+    <div class="outline-item"><div class="num">01</div><div class="name">研究背景<br>与方案定位</div><div class="desc">说明板球系统控制难点与本文低成本视觉闭环路线</div></div>
+    <div class="outline-item"><div class="num">02</div><div class="name">建模与<br>控制器设计</div><div class="desc">从动力学近似、传动模型到三环串级 PID</div></div>
+    <div class="outline-item"><div class="num">03</div><div class="name">仿真验证</div><div class="desc">阶跃、圆轨迹和扰动工况下的性能指标</div></div>
+    <div class="outline-item"><div class="num">04</div><div class="name">视觉测量<br>与数据链路</div><div class="desc">LAB 分割、目标筛选、UART 坐标传输</div></div>
+    <div class="outline-item"><div class="num">05</div><div class="name">硬件平台<br>与软件系统</div><div class="desc">MaixCam、MSPM0、JY931、步进电机与驱动器</div></div>
+    <div class="outline-item"><div class="num">06</div><div class="name">实物实验<br>与差异分析</div><div class="desc">定点控制、圆轨迹跟踪及仿真—实物偏差来源</div></div>
+    <div class="outline-item"><div class="num">07</div><div class="name">结论<br>与展望</div><div class="desc">总结完成工作，提出后续改进方向</div></div>
+    <div class="outline-item" style="background:var(--blue3);"><div class="num" style="background:var(--red);">主线</div><div class="name">从模型到实物<br>闭环验证</div><div class="desc">重点突出工程实现与实验可解释性</div></div>
+  </div>
+</section>
+
+<!-- ====== 01. LITERATURE ====== -->
+<section>
+  <h2 data-no="01">国内外研究现状与本文切入点</h2>
+  <div class="grid2">
+    <div class="card">
+      <h3>国外研究：理论建模与标准平台较成熟</h3>
+      <ul>
+        <li>Hauser 等基于近似输入输出线性化处理板球系统。</li>
+        <li>TecQuipment 等推出商品化实验平台，便于教学与算法验证。</li>
+        <li>部分研究利用广义 KYP 引理等方法系统求解 I-PD 参数。</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>国内研究：控制策略与低成本实现并行推进</h3>
+      <ul>
+        <li>已有分层模糊控制、伺服补偿器、PID 策略对比等研究。</li>
+        <li>OpenMV 等视觉模块被用于低成本平台搭建。</li>
+        <li>实物平台常受机械摩擦、传动间隙、视觉噪声影响。</li>
+      </ul>
+    </div>
+    <div class="card-soft" style="grid-column:1 / 3;">
+      <h3>本文切入点</h3>
+      <p>在不追求复杂算法堆叠的前提下，重点完成一套可落地的低成本硬件系统，并解释仿真和实物之间的差异：算法能否收敛是一方面，视觉分辨率、执行器脉动和机械对称性同样决定最终精度。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ====== 02. APPROACH ====== -->
+<section>
+  <h2 data-no="02">研究背景与方案定位</h2>
+  <div class="row">
+    <div class="card" style="flex:1.05;">
+      <span class="tag">为什么选择板球系统</span>
+      <h3>典型非线性、强耦合、欠驱动对象</h3>
+      <ul>
+        <li><strong>非线性：</strong>小球加速度由台面倾角和当前位置共同决定。</li>
+        <li><strong>强耦合：</strong>X/Y 两轴通过台面几何约束和球面运动相互影响。</li>
+        <li><strong>欠驱动：</strong>仅能控制两个平台倾角，却需要调节位置与速度等状态量。</li>
+      </ul>
+      <div class="note" style="margin-top:16px;">板球系统复杂度高于普通二阶对象，又比四旋翼等系统更易搭建，适合开展"建模—仿真—实物验证"的本科毕设。</div>
+    </div>
+    <div class="card" style="flex:.95;">
+      <span class="tag">本文方案</span>
+      <h3>低成本嵌入式视觉闭环</h3>
+      <div class="timeline">
+        <div class="step"><div class="n">1</div><div class="t">视觉</div><div class="d">MaixCam 识别白球坐标</div></div>
+        <div class="step"><div class="n">2</div><div class="t">通信</div><div class="d">串口传输球心数据</div></div>
+        <div class="step"><div class="n">3</div><div class="t">控制</div><div class="d">MSPM0 执行串级 PID</div></div>
+        <div class="step"><div class="n">4</div><div class="t">驱动</div><div class="d">STEP/DIR 控制步进电机</div></div>
+        <div class="step"><div class="n">5</div><div class="t">反馈</div><div class="d">JY931 提供倾角内环</div></div>
+      </div>
+      <p class="small" style="margin-top:18px;">相比"工业相机 + PC + 数据采集卡"路线，本文更强调低成本、可复现和嵌入式一体化实现。</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2 data-no="03">系统建模与控制器设计</h2>
+  <div class="row">
+    <div style="flex:1;" class="card">
+      <h3>建模假设与对象特性</h3>
+      <ul>
+        <li>小球纯滚动，台面小角度运动，近似满足 sinθ≈θ。</li>
+        <li>摩擦、延迟与噪声统一等效为阻尼和扰动项。</li>
+        <li>小球位置对平台倾角呈双积分特性，开环临界稳定。</li>
+        <li>步进电机与传动机构近似为一阶惯性环节。</li>
+      </ul>
+      <div class="img-fit" style="margin-top:14px;"><img src="images/mechanical_structure.png" style="max-height:185px;"><div class="img-cap">X 轴传动链结构示意图</div></div>
+    </div>
+    <div style="flex:1;" class="card">
+      <h3>为什么采用三环串级 PID</h3>
+      <ul>
+        <li>单位置环难以同时兼顾快速性、稳定性和超调量。</li>
+        <li>外环控制位置，中环约束速度，内环快速校正平台倾角。</li>
+        <li>结构清晰、参数可调、便于从仿真迁移到实物平台。</li>
+      </ul>
+      <div class="img-fit" style="margin-top:12px;"><img src="images/cascade_pid_diagram.png" style="max-height:215px;"><div class="img-cap">三级串级 PID 控制系统信号流图</div></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2 data-no="04">三环控制参数与闭环结构</h2>
+  <div class="row">
+    <div class="card" style="flex:1.05; text-align:center;">
+      <h3>控制回路分工</h3>
+      <table style="margin:0 auto;">
+        <tr><th>回路</th><th>输入/反馈</th><th>输出目标</th><th>Kp / Ki / Kd</th></tr>
+        <tr><td>位置外环</td><td>小球像素坐标</td><td>目标速度</td><td>2.2 / 0.01 / 0.2</td></tr>
+        <tr><td>速度中环</td><td>位置差分+低通</td><td>目标倾角</td><td>1.2 / 0.01 / 0.1</td></tr>
+        <tr><td>角度内环</td><td>JY931 倾角</td><td>脉冲频率</td><td>8.0 / 0.07 / 0.001</td></tr>
+      </table>
+      <div class="note" style="margin-top:18px;">外环决定"往哪里走"，中环限制"走多快"，内环保证"平台能否快速到位"。</div>
+    </div>
+    <div class="card" style="flex:.95;">
+      <h3>工程实现中的保护策略</h3>
+      <ul>
+        <li>位置与速度输入低通处理，抑制视觉噪声和差分放大。</li>
+        <li>目标倾角和脉冲频率限幅，避免执行机构过冲。</li>
+        <li>通信超时进入降级策略，防止丢帧导致平台失控。</li>
+        <li>按固定周期取最新视觉帧，减少积压数据引入的滞后。</li>
+      </ul>
+      <div class="img-fit" style="margin-top:12px;"><img src="images/cascade_pid_diagram.png" style="max-height:260px;"><div class="img-cap">三级串级 PID 控制系统信号流图</div></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2 data-no="05">仿真分析：定点、轨迹与扰动验证</h2>
+  <div class="row">
+    <div class="card" style="flex:1;">
+      <h3>定点阶跃响应</h3>
+      <div class="img-fit"><img src="images/sim_step_response.png" style="max-height:340px;"><div class="img-cap">定点阶跃 — 位置响应曲线</div></div>
+      <div class="kpi"><div class="item"><div class="v">0.831</div><div class="l">X 稳态误差 / mm</div></div><div class="item"><div class="v">12.6%</div><div class="l">X 超调量</div></div><div class="item"><div class="v">8.08s</div><div class="l">X 调节时间</div></div></div>
+    </div>
+    <div class="card" style="flex:1;">
+      <h3>圆轨迹跟踪</h3>
+      <div class="img-fit"><img src="images/sim_circle_tracking.png" style="max-height:340px;"><div class="img-cap">圆轨迹 — 平面跟踪（60 s / 3001 点）</div></div>
+      <div class="kpi"><div class="item"><div class="v">4.424</div><div class="l">全时段 RMSE / mm</div></div><div class="item"><div class="v">0.835</div><div class="l">稳态 RMSE / mm</div></div><div class="item"><div class="v">60s</div><div class="l">仿真时长</div></div></div>
+    </div>
+  </div>
+  <div class="note" style="margin-top:14px;">扰动工况下，X 轴峰值约 23.16 mm、恢复约 3.64 s；Y 轴峰值约 18.24 mm、恢复约 3.88 s。说明串级 PID 在三类工况下均具备基本稳定性。</div>
+</section>
+
+<section>
+  <h2 data-no="06">视觉测量方案：从图像到坐标</h2>
+  <div class="row">
+    <div class="card" style="flex:.9;">
+      <h3>为什么选择 LAB 色彩空间</h3>
+      <table>
+        <tr><th>空间</th><th>白球检测问题</th></tr>
+        <tr><td>RGB</td><td>三通道随光照共同漂移，固定阈值稳定性差</td></tr>
+        <tr><td>HSV</td><td>白色低饱和，H 通道对噪声敏感</td></tr>
+        <tr><td><strong>LAB</strong></td><td>L 管亮度，A/B 管色度，更适合白球阈值分割</td></tr>
+      </table>
+      <h3 style="margin-top:16px;">处理流程</h3>
+      <div class="flow"><span class="fb">采集</span><span class="arr">→</span><span class="fb fb-em">LAB 分割</span><span class="arr">→</span><span class="fb">连通域</span><span class="arr">→</span><span class="fb">质心</span><span class="arr">→</span><span class="fb">UART</span></div>
+      <p class="small" style="margin-top:13px;">通过圆形度、区域密度和面积范围三类特征筛选目标；单帧处理时间小于 19 ms，约可满足 50 Hz 控制周期。</p>
+      <div class="img-fit" style="margin-top:14px;"><img src="images/vision_installation.png" style="max-height:200px;"><div class="img-cap">摄像头安装示意图（平台正上方 340 mm）</div></div>
+    </div>
+    <div class="card" style="flex:1.1; display:flex; align-items:center; justify-content:center;">
+      <div class="img-fit"><img src="images/vision_pipeline.png" style="max-height:485px;"><div class="img-cap">原始图像 → LAB 分割 → 目标检测结果</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ====== 硬件平台 ====== -->
+<section>
+  <h2 data-no="07">硬件平台</h2>
+  <div class="row">
+    <div class="card" style="flex:1.1;">
+      <div class="img-fit"><img src="images/platform_photo.jpg" style="max-height:370px;"><div class="img-cap">板球系统实验平台实物图</div></div>
+    </div>
+    <div class="card" style="flex:.9; display:flex; flex-direction:column; gap:4px;">
+      <h3 style="margin-bottom:0;">五大硬件模块</h3>
+      <div style="display:flex; align-items:center; gap:8px; padding:3px 0; border-bottom:1px solid var(--line);">
+        <img src="images/maixcam.jpg" style="width:70px;height:52px;object-fit:cover;border-radius:6px;border:1px solid var(--line); flex-shrink:0;">
+        <div><strong style="font-size:.74em;">MaixCam</strong><span style="font-size:.58em;color:var(--muted);"> · 视觉采集，端侧处理仅传坐标</span></div>
+      </div>
+      <div style="display:flex; align-items:center; gap:8px; padding:3px 0; border-bottom:1px solid var(--line);">
+        <img src="images/mspm0g3507.jpg" style="width:70px;height:52px;object-fit:cover;border-radius:6px;border:1px solid var(--line); flex-shrink:0;">
+        <div><strong style="font-size:.74em;">MSPM0G3507</strong><span style="font-size:.58em;color:var(--muted);"> · 主控，UART多/定时器稳，CPU&lt;30%</span></div>
+      </div>
+      <div style="display:flex; align-items:center; gap:8px; padding:3px 0; border-bottom:1px solid var(--line);">
+        <img src="images/jy931.jpg" style="width:70px;height:52px;object-fit:cover;border-radius:6px;border:1px solid var(--line); flex-shrink:0;">
+        <div><strong style="font-size:.74em;">JY931</strong><span style="font-size:.58em;color:var(--muted);"> · 姿态传感器，角度内环反馈</span></div>
+      </div>
+      <div style="display:flex; align-items:center; gap:8px; padding:3px 0; border-bottom:1px solid var(--line);">
+        <img src="images/d36a.jpg" style="width:70px;height:52px;object-fit:cover;border-radius:6px;border:1px solid var(--line); flex-shrink:0;">
+        <div><strong style="font-size:.74em;">D36A (ATD5984)</strong><span style="font-size:.58em;color:var(--muted);"> · 双路32细分驱动，微步0.056°</span></div>
+      </div>
+      <div style="display:flex; align-items:center; gap:8px; padding:3px 0;">
+        <div style="width:70px;height:52px;border-radius:6px;border:1px solid var(--line); flex-shrink:0; display:flex; align-items:center; justify-content:center; background:var(--blue3); font-size:.52em; color:var(--blue); font-weight:700;">电机×2</div>
+        <div><strong style="font-size:.74em;">42步进电机 ×2</strong><span style="font-size:.58em;color:var(--muted);"> · 摇臂-连杆-万向节，力矩足/亚毫米</span></div>
+      </div>
+      <div class="note" style="margin-top:2px; padding:8px 12px; font-size:.62em;">全部器件可淘宝购买，标准UART/GPIO接口，逐层隔离排查</div>
+    </div>
+  </div>
+</section>
+
+<!-- ====== 软件系统 ====== -->
+<section>
+  <h2 data-no="08">软件系统</h2>
+  <div class="row">
+    <div class="card" style="flex:.85;">
+      <h3>双端分工架构</h3>
+      <p style="font-size:.74em; line-height:1.55;"><strong>视觉端 (MicroPython)：</strong>图像采集 → LAB 分割 → 连通域筛选 → 质心计算 → 串口发送。循环周期 19 ms (~53 Hz)。</p>
+      <p style="font-size:.74em; line-height:1.55; margin-top:10px;"><strong>主控端 (C，20ms 定时中断)：</strong></p>
+      <ol style="font-size:.68em; line-height:1.7; padding-left:1.6em;">
+        <li>读 MaixCam 串口 → 校验 0x55 → 提取小球坐标</li>
+        <li>读 JY931 串口 → 解析平台实时倾角</li>
+        <li>位置误差 → 外环(目标速度) → 中环(目标角度) → 内环(脉冲频率)</li>
+        <li>限幅 → 更新 DIR 方向 → 定时器输出 STEP 脉冲</li>
+      </ol>
+      <h3 style="margin-top:14px;">时序策略与保护机制</h3>
+      <ul style="font-size:.68em;">
+        <li>视觉 19ms / 控制 20ms —— 每周期取缓冲区最新帧，不等待</li>
+        <li>输入限幅：相邻帧坐标差 &gt; 30px 视为无效，沿用上一帧值</li>
+        <li>输出限幅：PWM 频率卡上下界，防止共振或失步</li>
+        <li>通信超时：连续丢帧触发减速保护，不按过期数据持续驱动</li>
+      </ul>
+    </div>
+    <div class="card" style="flex:1.15;">
+      <div class="img-fit"><img src="images/software_framework.png" style="max-height:500px;"><div class="img-cap">软件系统模块化架构</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ====== 实物测试视频 ====== -->
+<section>
+  <h2 data-no="09">实物测试演示</h2>
+  <div class="row">
+    <div class="card" style="flex:1.15;">
+      <div style="text-align:center;">
+        <video controls style="width:100%; max-height:450px; border-radius:12px; box-shadow:0 5px 20px rgba(32,58,95,.12); border:1px solid var(--line);">
+          <source src="demo_video.mp4" type="video/mp4">
+        </video>
+        <div class="img-cap">板球系统闭环运行实拍录像</div>
+      </div>
+    </div>
+    <div class="card" style="flex:.85;">
+      <h3>视频内容说明</h3>
+      <ul>
+        <li>完整闭环运行过程：小球在平台上运动，视觉端实时检测坐标，主控运行三环 PID 控制电机调整平台倾角。</li>
+        <li>可观察视觉检测 → 控制计算 → 电机执行 → 小球运动的完整链路。</li>
+        <li>验证了系统在真实物理环境中的闭环稳定性。</li>
+      </ul>
+      <div class="note" style="margin-top:16px;"><strong>联调验收标准</strong>（全部满足后进入性能测试）：通信稳定、周期稳定、输出连续、目标点可收敛。该视频为实物实验的数据来源基础。</div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2 data-no="10">实物实验：定点控制与圆轨迹跟踪</h2>
+  <div class="row">
+    <div class="card" style="flex:1;">
+      <h3>定点控制</h3>
+      <div class="img-grid-2">
+        <div><img src="images/exp_fixed_trajectory.png" style="max-height:205px;"><div class="img-cap">轨迹图</div></div>
+        <div><img src="images/exp_fixed_position_time.png" style="max-height:205px;"><div class="img-cap">位置—时间曲线</div></div>
+      </div>
+      <table style="margin-top:12px;"><tr><th>指标</th><th>X</th><th>Y</th></tr><tr><td>位置范围 / mm</td><td>[146.9, 221.9]</td><td>[154.7, 229.7]</td></tr><tr><td>平均速度 / mm·s⁻¹</td><td>−4.33</td><td>−5.17</td></tr></table>
+      <p class="small" style="margin-top:8px;">主要现象：约 5.84 s 后进入稳定范围，末端存在由静摩擦门槛引起的速度脉冲。</p>
+    </div>
+    <div class="card" style="flex:1;">
+      <h3>圆轨迹跟踪</h3>
+      <div class="img-grid-2">
+        <div><img src="images/exp_circle_trajectory.png" style="max-height:205px;"><div class="img-cap">轨迹图</div></div>
+        <div><img src="images/exp_circle_position_time.png" style="max-height:205px;"><div class="img-cap">位置—时间曲线</div></div>
+      </div>
+      <table style="margin-top:12px;"><tr><th>指标</th><th>X</th><th>Y</th></tr><tr><td>平均速度 / mm·s⁻¹</td><td>−2.92</td><td>+2.90</td></tr><tr><td>速度摆幅 / mm·s⁻¹</td><td>255.4</td><td>302.4</td></tr></table>
+      <p class="small" style="margin-top:8px;">主要现象：Y 轴速度摆幅高于 X 轴，说明机械不对称会放大同构 PID 参数的轴向差异。</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2 data-no="11">仿真与实物差异分析</h2>
+  <div class="grid2">
+    <div class="card">
+      <span class="tag">差异一 · 传感器</span>
+      <h3>像素量化引入测量噪声</h3>
+      <p>仿真中坐标连续、精度理想；实物中 MaixCam 分辨率为 <strong>256×256</strong>，存在最大 0.5 像素的量化偏差。噪声混入外环位置误差，经速度差分放大后传入内环，引起执行端高频微动。</p>
+    </div>
+    <div class="card">
+      <span class="tag">差异二 · 执行器</span>
+      <h3>转矩脉动替代理想平滑力矩</h3>
+      <p>仿真假设电机输出力矩连续平滑；实物步进电机存在齿槽效应与非正弦驱动电流波形。低速末端控制量微小时，脉动分量使小球在目标点附近微颤，定点段速度呈偶发脉冲。</p>
+    </div>
+    <div class="card">
+      <span class="tag">差异三 · 传动机构</span>
+      <h3>机械不对称破坏双轴同构假设</h3>
+      <p>仿真中两轴摩擦和间隙参数对称；实物中连杆长度、万向节装配松紧、摩擦分布均不同。同构 PID 参数下 Y 轴速度摆幅（302.4 mm/s）较 X 轴（255.4 mm/s）高出约 18%。</p>
+    </div>
+    <div class="card">
+      <span class="tag">差异四 · 通信链路</span>
+      <h3>丢帧与周期异步引入局部滞后</h3>
+      <p>仿真中数据准时到达、无丢失；实物中视觉端 19ms / 控制端 20ms 未做同步，实测丢帧率 0.07%（3004 帧中丢 2 帧）。需以超时降级策略兜底，避免过期数据持续驱动。</p>
+    </div>
+  </div>
+  <div class="card-soft" style="margin-top:18px;text-align:center;">
+    <h3>核心认识</h3>
+    <p>控制精度的最终上限由视觉测量、执行机构、机械结构和控制器<strong>四方共同决定</strong>。低成本平台上，执行端与机械端约束往往是主要瓶颈。</p>
+  </div>
+</section>
+
+<section>
+  <h2 data-no="12">结论与展望</h2>
+  <div class="grid2">
+    <div class="card"><h3>1. 完成低成本硬件闭环</h3><p>搭建 MaixCam + MSPM0 + JY931 + 步进电机的平台，实现视觉反馈、控制计算和执行输出的完整闭环。</p></div>
+    <div class="card"><h3>2. 验证 LAB 白球检测方案</h3><p>LAB 色彩空间将亮度与色度解耦，相比 RGB/HSV 更适合白球阈值分割，单帧处理时间小于 19 ms。</p></div>
+    <div class="card"><h3>3. 串级 PID 具备可迁移性</h3><p>仿真与实物均表现出基本收敛和轨迹跟踪能力，说明所设计控制结构具备工程可用性。</p></div>
+    <div class="card"><h3>4. 明确精度瓶颈来源</h3><p>实物偏差主要来自像素量化、静摩擦、转矩脉动与机械不对称，而非单一控制算法失效。</p></div>
+  </div>
+  <div class="card-soft" style="margin-top:17px;">
+    <h3>后续改进方向</h3>
+    <div class="grid2" style="gap:8px 26px;">
+      <ul><li>视觉端：自适应 LAB 阈值与卡尔曼滤波帧间跟踪。</li><li>控制端：分轴独立整定，引入摩擦观测与前馈补偿。</li></ul>
+      <ul><li>算法端：补充滑模、反步法等策略横向对比。</li><li>实验端：增加方形轨迹、Lissajous 曲线等基准测试。</li></ul>
+    </div>
+  </div>
+</section>
+
+<section class="thanks">
+  <div>
+    <div class="line"></div>
+    <h1>感谢各位老师</h1>
+    <p>恳请批评指正</p>
+    <div class="line"></div>
+    <p>答辩人：路一凡　　指导教师：秦红波 老师</p>
+    <p style="font-size:.68em;opacity:.62;">西安电子科技大学 · 机电工程学院 · 自动化专业 · 2026 年 5 月</p>
+  </div>
+</section>
+
+</div></div>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.min.js"></script>
+<script>Reveal.initialize({width:1280,height:720,margin:0.04,minScale:0.4,maxScale:2.0,hash:true,transition:'slide',center:false,slideNumber:'c/t'});</script>
+</body>
+</html>
