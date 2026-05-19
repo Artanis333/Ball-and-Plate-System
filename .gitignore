@@ -1,0 +1,7 @@
+firmware/Debug/
+firmware/.clangd/
+firmware/.settings/
+firmware/.ccsproject
+firmware/.clangd
+firmware/.cproject
+firmware/.project
